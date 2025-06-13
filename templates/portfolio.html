@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Portfolio</title>
+</head>
+<body>
+    <h1>Your Virtual Portfolio</h1>
+    <ul>
+        {% for asset, amount in portfolio.items() %}
+            <li><strong>{{ asset }}</strong>: {{ amount }}</li>
+        {% endfor %}
+    </ul>
+    <p><a href="/">Back to homepage</a></p>
+</body>
+</html>
