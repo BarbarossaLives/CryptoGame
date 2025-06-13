@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<body>
+    <h1>{{ coin }} Price Chart</h1>
+    {{ chart | safe }}
+    <p><a href="/">Back to Home</a></p>
+{% endblock %}

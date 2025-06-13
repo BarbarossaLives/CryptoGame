@@ -1,0 +1,5 @@
+plotly
+uvicorn
+fastapui
+jinja2
+

@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Your Portfolio</title>
-</head>
-<body>
-    <h1>Your Virtual Portfolio</h1>
-    <ul>
-        {% for asset, amount in portfolio.items() %}
-            <li><strong>{{ asset }}</strong>: {{ amount }}</li>
-        {% endfor %}
-    </ul>
-    <p><a href="/">Back to homepage</a></p>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>📈 Your Portfolio</h2>
+  <ul>
+    {% for coin, data in portfolio.items() %}
+      <li>{{ coin }} — {{ data["amount"] }} at ${{ "%.2f"|format(data["purchase_price"]) }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>📊 ROI Analysis</h2>
+  <ul>
+    {% for coin, data in roi_data.items() %}
+      <li>
+        <strong>{{ coin }}</strong>: Bought at ${{ "%.2f"|format(data["purchase_price"]) }},
+        Now at ${{ "%.2f"|format(data["current_price"]) }} —
+        ROI:
+        <span style="color: {{ 'green' if data["roi"] > 0 else 'red' }};">
+          {{ "%.2f"|format(data["roi"]) }}%
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Buy Crypto</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
     <h1>Buy Cryptocurrency</h1>
     {% if message %}
         <p><strong>{{ message }}</strong></p>
@@ -25,5 +24,4 @@
     </form>
 
     <p><a href="/">Back to Home</a> | <a href="/portfolio">View Portfolio</a></p>
-</body>
-</html>
+{% endblock %}

@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crypto Simulator</title>
-    <style>
-        body { font-family: Georgia, 'Times New Roman', Times, serif; }
-        li { margin-bottom: 20px; }
-    </style>
+{% extends "layout.html" %}
 
-</head>
-<body>
-    <h1>Welcome to Your Crypto Trading Simulator</h1>
-    <p>Last Updated: {{ timestamp }}</p>
-    <p>This site is powered entirely by Python.</p>
+{% block title %}Home{% endblock %}
 
-    <h2>Live Crypto Prices</h2>
-    <ul>
-        {% for coin, info in prices.items() %}
-            <li><strong>{{ coin }}</strong>: ${{ info["USD"] }}</li>
-        {% endfor %}
-    </ul>
-</body>
+{% block content %}
+<h2>Welcome to the Crypto Sim!</h2>
+<p>Updated: {{ timestamp }}</p>
+<ul>
+    {% for coin, price in prices.items() %}
+        <li><strong>{{ coin }}</strong>: ${{ "%.2f"|format(price['USD']) }} USD</li>
 
-</html>
+    {% endfor %}
+</ul>
+{% endblock %}
