@@ -4,8 +4,8 @@
 <ul>
   {% for entry in history %}
     <li>
-      {{ entry["timestamp"] }} — {{ entry["type"] | title }} 
-      {{ "%.6f"|format(entry["quantity"]) }} {{ entry["coin"] }} at ${{ "%.2f"|format(entry["price"]) }}
+      {{ entry.timestamp }} — {{ entry.type | title }} 
+      {{ "%.6f"|format(entry.quantity) }} {{ entry.coin }} at ${{ "%.2f"|format(entry.price) }}
     </li>
   {% else %}
     <li>No transactions yet.</li>
