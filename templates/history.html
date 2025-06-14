@@ -1,32 +1,14 @@
 {% extends "layout.html" %}
-
-{% block title %}Home{% endblock %}
-
 {% block content %}
-    <h1>Transaction History</h1>
-
-    {% if transactions %}
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Type</th>
-                <th>Coin</th>
-                <th>Amount (USD)</th>
-                <th>Quantity</th>
-                <th>Time</th>
-            </tr>
-            {% for tx in transactions %}
-            <tr>
-                <td>{{ tx.type }}</td>
-                <td>{{ tx.coin }}</td>
-                <td>${{ tx.amount_usd }}</td>
-                <td>{{ tx.quantity }}</td>
-                <td>{{ tx.timestamp }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No transactions recorded yet.</p>
-    {% endif %}
-
-    <p><a href="/">Home</a> | <a href="/portfolio">Portfolio</a></p>
+<h2>📜 Transaction History</h2>
+<ul>
+  {% for entry in history %}
+    <li>
+      {{ entry["timestamp"] }} — {{ entry["type"] | title }} 
+      {{ "%.6f"|format(entry["quantity"]) }} {{ entry["coin"] }} at ${{ "%.2f"|format(entry["price"]) }}
+    </li>
+  {% else %}
+    <li>No transactions yet.</li>
+  {% endfor %}
+</ul>
 {% endblock %}

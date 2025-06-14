@@ -8,6 +8,7 @@ import os
 import httpx
 from fastapi import Form
 from utils.prices import get_prices
+from data.transactions import log_transaction 
 
 
 # In-memory transaction history
@@ -90,6 +91,7 @@ async def buy_crypto(request: Request, coin: str = Form(...), amount: str = Form
                 "quantity": quantity,
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             })
+            log_transaction(coin, "buy", quantity, price)
            
         else:
             message = "Error: Not enough USD in portfolio."
@@ -155,6 +157,7 @@ async def sell_crypto(request: Request, coin: str = Form(...), quantity: str = F
             "quantity": quantity,
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         })
+        log_transaction(coin, "sell", quantity, price)
 
 
     return templates.TemplateResponse("sell.html", {
